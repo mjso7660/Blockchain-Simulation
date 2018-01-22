@@ -2,7 +2,7 @@
 
 ## Requirements
 Using	Java	or	Python,	write	appropriately	commented	code	to	create	a singly-linked	
-list of	say	10	items	with	the	following functionality:
+list of	say	10	items	with	the	following functionality:  
 (1) Traverse	the	list	and	print	out	the	items;	if	empty	list,	print	that  
 (2) Add	an	item	to	head	of	list  
 (3) Add	an	item	to	tail	of	list  
