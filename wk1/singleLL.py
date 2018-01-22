@@ -3,6 +3,7 @@
 Created on Sat Jan 20 22:35:14 2018
 
 @author: Min Joon So, Shailesh Patro
+Blockchain wk1 assignment
 """
 class Node:
     '''
@@ -33,6 +34,8 @@ class LinkedList:
         '''
         adds a new node at the head
         '''
+        if not self.check_key(key):
+            return
         new_node = Node(key, value)
         new_node.next = self.head
 
@@ -42,6 +45,8 @@ class LinkedList:
         '''
         append a new node at the tail
         '''
+        if not self.check_key(key):
+            return
         new_node = Node(key, value)
         temp = self.head
         while temp.next is not None:
@@ -69,6 +74,8 @@ class LinkedList:
         searches for a given key and inserts a new node with 'key'' and 'value' after
         loc: key of the node after which a new node will be inserted
         '''
+        if not self.check_key(key):
+            return
         temp = self.head
         while temp is not None:
             if temp.key is loc:
@@ -103,8 +110,10 @@ class LinkedList:
             temp = temp.next
         return
     
-        # Reverse a list
     def reverse(self):
+        '''
+        reversed a list
+        '''
         current = self.head                 # Initialize current to start of list (head)
         previous = None                     # Since we want the new tail to point to None and since there is no node before
         while (current != None):            # Initiate a while loop that runs as long as current node is not null, loop
@@ -112,8 +121,23 @@ class LinkedList:
             current.next = previous         # Set current node to previous (for the first run, head node points to None/Null), now we are breaking the link of the first node to second node, this is where nextnode is used)
             previous = current              # Move previous 
             current = nextnode              # Move current
-        
         self.head = previous                # When the loop is complete move the head to last node (new head of list)
+    
+    def check_key(self, new_key):
+        '''
+        new_key: key of a new node to be inserted
+        returns True if new_key doesn't overlap with anyother keys. If the key already exits, return False
+        '''
+        temp = self.head
+        while temp is not None:
+            if temp.key is new_key:
+                print("key alread exists")
+                return False
+            temp = temp.next
+        return True
+
+# End of class definition
+# Start of public functions
 
 def deep_copy(llist):
     '''
@@ -155,28 +179,26 @@ def check_same(llist1,llist2):
     return True
 
 
-
 if __name__ == '__main__':
     llist = LinkedList()
-    llist.push(3,4)
-    llist.push(2,1)
-    llist.insert_after_key(2, 5, 7)
-    llist.insert_after_key(5, 2, '*')
-    llist.append(8,'a')
-    llist.append(0, 4)
+    llist.push(1,'Min Joon')
+    llist.push(3,'Shailesh')
+    llist.push(2,'Blockchain')
+    llist.push(2,'error')       #key '2' already exists
+    llist.push(5,'CooperUnion')
+    llist.push(4,1)
+    llist.push(6,3.141)
+    llist.insert_after_key(2, 8, 7)
+    llist.insert_after_key(5, 7, '*')
+    llist.append(0,'a')
+    llist.append(9, 4)
+    #print keys and values
     llist.traversal()
     print("----")
+    #deep-copy, reversed
     new_list = deep_copy(llist)
-    llist.reverse()
-    llist.traversal()
+    new_list.reverse()
+    new_list.traversal()
     print("----")
+    #check if they match
     print(check_same(new_list,llist))
-    
-    
-
-    
-
-    
-
-    
-    
